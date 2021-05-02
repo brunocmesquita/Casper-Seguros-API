@@ -1,4 +1,3 @@
-import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import ContactForm from '../typeorm/entities/ContactForm';
 import ContactsRepository from '../typeorm/repositories/ContactsRepository';
