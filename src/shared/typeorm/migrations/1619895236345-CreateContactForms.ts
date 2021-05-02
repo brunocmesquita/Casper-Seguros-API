@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateUsers1619714940319 implements MigrationInterface {
+export class CreateContactForms1619895236345 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'contact-forms',
         columns: [
           {
             name: 'id',
@@ -21,21 +21,19 @@ export class CreateUsers1619714940319 implements MigrationInterface {
           {
             name: 'email',
             type: 'varchar',
-            isUnique: true,
           },
           {
-            name: 'password',
+            name: 'phone',
             type: 'varchar',
           },
           {
-            name: 'avatar',
+            name: 'insurance',
+            type: 'varchar',
+          },
+          {
+            name: 'contacted',
             type: 'varchar',
             isNullable: true,
-          },
-          {
-            name: 'role',
-            type: 'int',
-            default: 0,
           },
           {
             name: 'created_at',
@@ -53,6 +51,6 @@ export class CreateUsers1619714940319 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('contact-forms');
   }
 }

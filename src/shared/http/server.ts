@@ -7,6 +7,7 @@ import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
 import uploadConfig from '@config/upload';
 
+
 const app = express();
 
 app.use(cors());
@@ -22,6 +23,7 @@ app.use(
       });
     }
 
+    console.log(error);
     return response.status(500).json({
       status: 'error',
       message: 'Internal server error',

@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('users')
-class User {
+@Entity('contact-forms')
+class ContactForm {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,13 +18,10 @@ class User {
   email: string;
 
   @Column()
-  password: string;
+  insurance: string;
 
   @Column()
-  avatar: string;
-
-  @Column()
-  role: number;
+  phone: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -33,4 +30,4 @@ class User {
   updated_at: Date;
 }
 
-export default User;
+export default ContactForm;

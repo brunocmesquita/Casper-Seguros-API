@@ -11,4 +11,8 @@ export default class SessionsController {
 
     return res.json(user);
   }
+
+  public async validate(req: Request, res: Response): Promise<Response> {
+    return res.send('Validado');
+  }
 }

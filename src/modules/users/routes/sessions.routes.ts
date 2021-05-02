@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import SessionsController from '../controllers/SessionsController';
+import isAuth from '../../../shared/http/middlewares/isAuth';
 
 const sessionsRouter = Router();
 const sessionsController = new SessionsController();
@@ -15,5 +16,7 @@ sessionsRouter.post(
   }),
   sessionsController.create,
 );
+
+sessionsRouter.post('/validate', sessionsController.validate);
 
 export default sessionsRouter;

@@ -31,10 +31,14 @@ class CreateSessionsService {
       throw new AppError('Dados de acesso incorretos', 401);
     }
 
-    const token = sign({}, authConfig.jwt.secret, {
-      subject: user.id,
-      expiresIn: authConfig.jwt.expiresIn,
-    });
+    const token = sign(
+      { email: user.email, role: user.role },
+      authConfig.jwt.secret,
+      {
+        subject: user.id,
+        expiresIn: authConfig.jwt.expiresIn,
+      },
+    );
 
     return { user, token };
   }

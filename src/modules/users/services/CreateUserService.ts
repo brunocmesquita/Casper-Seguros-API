@@ -8,6 +8,7 @@ interface IRequest {
   name: string;
   email: string;
   password: string;
+  role: number;
 }
 
 class CreateUserService {
@@ -25,6 +26,7 @@ class CreateUserService {
       name,
       email,
       password: hashedPassword,
+      role: 0,
     });
 
     await usersRepository.save(user);

@@ -20,6 +20,7 @@ export default class UsersController {
       name,
       email,
       password,
+      role: 0,
     });
 
     return response.json(user);

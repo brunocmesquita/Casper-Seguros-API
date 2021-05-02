@@ -4,6 +4,7 @@ import { verify } from 'jsonwebtoken';
 import authConfig from '@config/auth';
 
 interface ITokenPayload {
+  role: number;
   iat: number;
   exp: number;
   sub: string;
