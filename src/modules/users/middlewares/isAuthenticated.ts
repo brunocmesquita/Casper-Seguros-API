@@ -1,9 +1,10 @@
 import AppError from '@shared/errors/AppError';
-import { NextFunction, Request, Response } from 'express';
-import { verify } from 'jsonwebtoken';
+import { NextFunction, request, Request, Response } from 'express';
+import { decode, verify } from 'jsonwebtoken';
 import authConfig from '@config/auth';
 
 interface ITokenPayload {
+  email: string;
   role: number;
   iat: number;
   exp: number;
@@ -26,13 +27,24 @@ export default function isAuth(
   try {
     const decodedToken = verify(token, authConfig.jwt.secret);
 
-    const { sub } = decodedToken as ITokenPayload;
+    console.log(decodedToken);
 
-    req.user = {
-      id: sub,
-    };
+    const { role, sub } = decodedToken as ITokenPayload;
 
-    return next();
+    if (role == 0) {
+      throw new AppError('Não autorizado');
+    } else {
+      request.user = {
+        id: sub,
+      };
+      // const { sub } = decodedToken as ITokenPayload;
+
+      // req.user = {
+      //   id: sub,
+      // };
+
+      return next();
+    }
   } catch {
     throw new AppError('Invalid JWT token');
   }
