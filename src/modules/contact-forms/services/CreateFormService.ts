@@ -7,6 +7,7 @@ interface IRequest {
   email: string;
   phone: string;
   insurance: string;
+  observation: string;
 }
 
 class CreateFormService {
@@ -15,6 +16,7 @@ class CreateFormService {
     email,
     phone,
     insurance,
+    observation,
   }: IRequest): Promise<ContactForm> {
     const contactsRepository = getCustomRepository(ContactsRepository);
 
@@ -23,6 +25,7 @@ class CreateFormService {
       email,
       phone,
       insurance,
+      observation,
     });
 
     await contactsRepository.save(contactForm);

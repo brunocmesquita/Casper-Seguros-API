@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { celebrate, Joi, Segments } from 'celebrate';
+import { celebrate, Joi, errors, Segments } from 'celebrate';
 import UsersController from '../controllers/UsersController';
 import isAuthenticated from '../middlewares/isAuthenticated';
 import multer from 'multer';

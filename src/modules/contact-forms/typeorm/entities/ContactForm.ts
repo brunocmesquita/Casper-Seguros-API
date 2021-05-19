@@ -23,6 +23,12 @@ class ContactForm {
   @Column()
   phone: string;
 
+  @Column()
+  observation: string;
+
+  @Column()
+  contacted: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

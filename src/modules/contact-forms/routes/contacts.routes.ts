@@ -18,9 +18,23 @@ contactsRouter.post(
         .pattern(/^[0-9]+$/)
         .required(),
       insurance: Joi.string().required(),
+      observation: Joi.string().optional(),
     },
   }),
   contactsController.create,
+);
+
+contactsRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      observation: Joi.string().required(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  contactsController.update,
 );
 
 export default contactsRouter;

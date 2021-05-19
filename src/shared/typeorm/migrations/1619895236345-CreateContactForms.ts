@@ -32,17 +32,17 @@ export class CreateContactForms1619895236345 implements MigrationInterface {
           },
           {
             name: 'contacted',
-            type: 'varchar',
-            isNullable: true,
+            type: 'boolean',
+            default: false,
           },
           {
             name: 'created_at',
-            type: 'timestamp',
+            type: 'timestamp with time zone',
             default: 'now()',
           },
           {
             name: 'updated_at',
-            type: 'timestamp',
+            type: 'timestamp with time zone',
             default: 'now()',
           },
         ],
