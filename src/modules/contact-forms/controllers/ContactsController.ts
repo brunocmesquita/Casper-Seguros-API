@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import ListFormService from '../services/ListFormService';
 import CreateFormService from '../services/CreateFormService';
 import InsertObsService from '../services/InsertObsService';
+import InsertCheckboxService from '../services/InsertCheckboxService';
 
 export default class ContactsController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -39,5 +40,21 @@ export default class ContactsController {
       observation,
     });
     return response.json(obsUpdate);
+  }
+
+  public async updateContacted(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { contacted } = request.body;
+    const { id } = request.params;
+
+    const updateForm = new InsertCheckboxService();
+
+    const contactedUpdate = await updateForm.execute({
+      id,
+      contacted,
+    });
+    return response.json(contactedUpdate);
   }
 }

@@ -37,4 +37,17 @@ contactsRouter.put(
   contactsController.update,
 );
 
+contactsRouter.put(
+  '/contacted/:id',
+  celebrate({
+    [Segments.BODY]: {
+      contacted: Joi.boolean().required(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  contactsController.updateContacted,
+);
+
 export default contactsRouter;

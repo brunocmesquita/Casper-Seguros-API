@@ -4,19 +4,20 @@ import ContactForm from '../typeorm/entities/ContactForm';
 import ContactsRepository from '../typeorm/repositories/ContactsRepository';
 
 interface IRequest {
-  contact_id: string;
+  id: string;
+  contacted: boolean;
 }
 
 class InsertCheckboxService {
-  public async execute({ contact_id }: IRequest): Promise<ContactForm> {
+  public async execute({ id, contacted }: IRequest): Promise<ContactForm> {
     const contactsRepository = getCustomRepository(ContactsRepository);
 
-    const contactedForm = await contactsRepository.findById(contact_id);
+    const contactedForm = await contactsRepository.findById(id);
     if (!contactedForm) {
       throw new AppError('Formulário inexistente');
     }
 
-    contactedForm.contacted = true;
+    contactedForm.contacted = contacted;
 
     await contactsRepository.save(contactedForm);
 
