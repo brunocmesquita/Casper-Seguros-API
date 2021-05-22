@@ -46,7 +46,7 @@ export default class ContactsController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { contacted } = request.body;
+    const { contacted, observation } = request.body;
     const { id } = request.params;
 
     const updateForm = new InsertCheckboxService();
@@ -54,6 +54,7 @@ export default class ContactsController {
     const contactedUpdate = await updateForm.execute({
       id,
       contacted,
+      observation,
     });
     return response.json(contactedUpdate);
   }

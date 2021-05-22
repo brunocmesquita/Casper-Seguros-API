@@ -6,10 +6,15 @@ import ContactsRepository from '../typeorm/repositories/ContactsRepository';
 interface IRequest {
   id: string;
   contacted: boolean;
+  observation: string;
 }
 
 class InsertCheckboxService {
-  public async execute({ id, contacted }: IRequest): Promise<ContactForm> {
+  public async execute({
+    id,
+    contacted,
+    observation,
+  }: IRequest): Promise<ContactForm> {
     const contactsRepository = getCustomRepository(ContactsRepository);
 
     const contactedForm = await contactsRepository.findById(id);
@@ -18,6 +23,7 @@ class InsertCheckboxService {
     }
 
     contactedForm.contacted = contacted;
+    contactedForm.observation = observation;
 
     await contactsRepository.save(contactedForm);
 

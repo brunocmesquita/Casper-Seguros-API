@@ -42,6 +42,7 @@ contactsRouter.put(
   celebrate({
     [Segments.BODY]: {
       contacted: Joi.boolean().required(),
+      observation: Joi.optional(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
